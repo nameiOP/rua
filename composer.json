@@ -19,7 +19,7 @@
         	"framework/helpers/helpers.php"
         ],
         "psr-4": {
-            
+            "rua\\":"framework/"
         }
     }
 }
