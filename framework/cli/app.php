@@ -2,6 +2,8 @@
 
 
 namespace rua\cli;
+
+
 use rua\base\application;
 
 defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
@@ -9,33 +11,35 @@ defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
 defined('STDERR') or define('STDERR', fopen('php://stderr', 'w'));
 
 
-
 class app extends application{
 
 
     /**
-     * 服务器开启
+     * @var array
      */
-    const EVENT_START = 'start';
+    public $server;
 
 
     /**
-     * 服务器关闭
+     * @var array
      */
-    const EVENT_CLOSE = 'stop';
+    public $client;
 
 
     /**
-     * 服务器重启
+     * @var string
      */
-    const EVENT_RESTART = 'restart';
+    public $exec;
+
 
 
     /**
-     * 服务器状态
+     * 处理终端命令
+     * @author liu.bin 2017/10/24 17:12
      */
-    const EVENT_STATUS = 'status';
-
+    public function handleCommand(){
+        return $this->getCommand()->run();
+    }
 
 
 }

@@ -16,7 +16,8 @@
     },
     "autoload": {
     	"files":[
-        	"framework/helpers/helpers.php"
+        	"framework/helpers/helpers.php",
+            "framework/event/event.php"
         ],
         "psr-4": {
             "rua\\":"framework/"

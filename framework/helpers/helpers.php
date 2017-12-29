@@ -1109,3 +1109,67 @@ if (! function_exists('with')) {
         return $object;
     }
 }
+
+
+
+/**
+ * console
+ *
+ */
+if(! function_exists('console')){
+	function console($mess,$type='System'){
+		$console = Builder::$app->get('console');
+		$mess = date('Y-m-d H:i:s') . ' ['.$type.'] ' . $mess;
+		$console->send($mess);
+	}
+}
+
+
+
+
+/**
+ * socket 转 id
+ *
+ */
+if(! function_exists('socket_to_fd')){
+		function socket_to_fd($socket){
+			return (int)$socket;
+		}
+}
+
+
+
+
+/**
+ * 执行php脚本命令
+ *
+ */
+if(! function_exists('php_exec')){
+
+    function php_exec($bin){
+        include $bin;
+    }
+
+}
+
+
+
+/**
+ * 检测是否为空,过滤0字符串
+ *
+ */
+if(! function_exists('is_empty')){
+
+    function is_empty($var){
+
+        if(empty($var)){
+            if('0' === $var){
+                return false;
+            }
+            return true;
+        }
+        return false;
+
+    }
+
+}

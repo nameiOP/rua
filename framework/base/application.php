@@ -17,11 +17,6 @@ class application extends pip implements runnable{
 
 
 
-    /**
-     * 项目根目录
-     * @var string
-     */
-    public $rootPath = '';
 
 
 
@@ -41,13 +36,12 @@ class application extends pip implements runnable{
     public function __construct($config=[])
     {
         Builder::$app = $this;
-        static::setInstance($this);
         $this->preInit($config);
+        static::setInstance($this);
         parent::__construct($config);
+        $this->addEventBind();
+        $this->trigger(EVENT_APP_BEGIN);
     }
-
-
-
 
 
 
@@ -77,7 +71,6 @@ class application extends pip implements runnable{
 
 
 
-
     /**
      * 设置项目路径
      * This method can only be invoked at the beginning of the constructor.
@@ -87,10 +80,6 @@ class application extends pip implements runnable{
     public function setRootPath($path){
         Builder::setAlias('@root', $path);
     }
-
-
-
-
 
 
 
@@ -106,13 +95,13 @@ class application extends pip implements runnable{
 
 
 
-
     /**
-     * application 参数初始化
-     * @author liu.bin 2017/10/25 11:30
+     * 初始化
      */
     public function init(){
 
+
+        $this->trigger(EVENT_APP_INIT);
         //扩展信息配置
         foreach ($this->extensions as $extension) {
             if (!empty($extension['alias'])) {
@@ -125,9 +114,17 @@ class application extends pip implements runnable{
 
         //application 应用目录配置
         $this->setAppPath('@root/application');
-
     }
 
+
+    /**
+     * 加载事件侦听器
+     * @author liu.bin
+     */
+    public function addEventBind(){
+        $eventBindFile = '@app/bind/bind.php';
+        php_exec(Builder::getAlias($eventBindFile));
+    }
 
 
 
@@ -137,8 +134,12 @@ class application extends pip implements runnable{
      */
     public function run()
     {
-        try {
+		try {
+
+            $this->trigger(EVENT_APP_RUN);
             $this->handleCommand();
+            $this->trigger(EVENT_APP_END);
+
         } catch (ExitException $e) {
             echo $e->statusCode;
             exit;
@@ -150,13 +151,12 @@ class application extends pip implements runnable{
 
 
 
+
     /**
      * 处理命令
      * @author liu.bin 2017/10/24 17:12
      */
-    private function handleCommand(){
-        return $this->getCommand()->run();
-    }
+    public function handleCommand(){}
 
 
 

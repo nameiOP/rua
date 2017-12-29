@@ -18,16 +18,6 @@ class pip extends house {
 
 
     /**
-     * 核心砖头
-     */
-    public function coreBricks(){
-        return [];
-    }
-
-
-
-
-    /**
      * 获取命令解析对象
      * @author liu.bin 2017/10/25 10:10
      */
@@ -47,11 +37,17 @@ class pip extends house {
     }
 
 
+    /**
+     * hook
+     */
+    public function getHook(){
+        return $this->get('hook');
+    }
 
 
 
     /**
-     * @return Logger message logger
+     * return Logger message logger
      */
     public static function getLogger()
     {
