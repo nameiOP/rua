@@ -49,7 +49,13 @@ class Object implements configurable
     }
 
 
-
+    /**
+     * 打印类名称
+     * @return string
+     */
+    public function __toString() {
+        return get_called_class();
+    }
 
     /**
      * Initializes the object.

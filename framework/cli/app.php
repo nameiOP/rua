@@ -27,9 +27,16 @@ class app extends application{
 
 
     /**
-     * @var string
+     * @var string 服务器启动脚本
      */
-    public $exec;
+    public $server_exec;
+
+
+    /**
+     * @var string 客户端启动脚本
+     */
+    public $client_exec;
+
 
 
 
@@ -37,8 +44,8 @@ class app extends application{
      * 处理终端命令
      * @author liu.bin 2017/10/24 17:12
      */
-    public function handleCommand(){
-        return $this->getCommand()->run();
+    public function handleCommand($type='server'){
+        return $this->getCommand()->run($type);
     }
 
 

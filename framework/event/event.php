@@ -1,24 +1,42 @@
 <?php
 
 /**
- * CMD 开始事件
+ * CMD 服务 开始事件
  */
-defined('EVENT_CMD_START') or define('EVENT_CMD_START','event_cmd_start');
+defined('EVENT_CMD_SERVER_START') or define('EVENT_CMD_SERVER_START','event_cmd_server_start');
 
 
 /**
- * CMD 重启事件
+ * CMD 服务 重启事件
  */
-defined('EVENT_CMD_RESTART') or define('EVENT_CMD_RESTART','event_cmd_restart');
+defined('EVENT_CMD_SERVER_RESTART') or define('EVENT_CMD_SERVER_RESTART','event_cmd_server_restart');
 
 
 
 /**
- * CMD 停止事件
+ * CMD 服务 停止事件
  */
-defined('EVENT_CMD_STOP') or define('EVENT_CMD_STOP','event_cmd_stop');
+defined('EVENT_CMD_SERVER_STOP') or define('EVENT_CMD_SERVER_STOP','event_cmd_server_stop');
 
 
+
+/**
+ * CMD 客户端 开始事件
+ */
+defined('EVENT_CMD_CLIENT_START') or define('EVENT_CMD_CLIENT_START','event_cmd_client_start');
+
+
+/**
+ * CMD 客户端 重启事件
+ */
+defined('EVENT_CMD_CLIENT_RESTART') or define('EVENT_CMD_CLIENT_RESTART','event_cmd_client_restart');
+
+
+
+/**
+ * CMD 客户端 停止事件
+ */
+defined('EVENT_CMD_CLIENT_STOP') or define('EVENT_CMD_CLIENT_STOP','event_cmd_client_stop');
 
 
 
