@@ -31,7 +31,6 @@ class BaseBuilder{
 
 
     /**
-     * 建筑工人的图纸
      * class 映射关系
      * @var array
      */
@@ -43,7 +42,6 @@ class BaseBuilder{
 
 
     /**
-     * 砖头厂商的地址
      * 路径别名
      * @var array registered path aliases
      * @see getAlias()
@@ -55,7 +53,6 @@ class BaseBuilder{
 
 
     /**
-     * 建筑工人的瓦刀
      * 容器ioc
      * @var rua\base\di\container the dependency injection (DI) container used by [[createObject()]].
      * You may use [[container::set()]] to set up the needed dependencies of classes and
@@ -69,8 +66,8 @@ class BaseBuilder{
 
 
     /**
-     * 管道
-     * @var \rua\base\application
+     *
+     * @var \rua\app\app
      */
     public static $app;
 
@@ -275,7 +272,7 @@ class BaseBuilder{
 
 
     /**
-     * 建工工人的技能：盖房子
+     * 控制反转
      *
      * Below are some usage examples:
      *

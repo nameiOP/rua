@@ -4,13 +4,12 @@ namespace rua\base;
 
 
 /**
- * 管道：
  * 创建定义
  * 系统功能类
  * Class pip
  * @package rua\base
  */
-class pip extends house {
+class pipeDist extends dist {
 
 
 

@@ -5,18 +5,13 @@ namespace rua\base;
 
 
 use Builder;
-use rua\able\runnable;
-use rua\exception\ExitException;
 use rua\exception\InvalidConfigException;
 
 
 
 
 
-class application extends pip implements runnable{
-
-
-
+class application extends pipeDist{
 
 
 
@@ -39,8 +34,12 @@ class application extends pip implements runnable{
         $this->preInit($config);
         static::setInstance($this);
         parent::__construct($config);
-        $this->addEventBind();
         $this->trigger(EVENT_APP_BEGIN);
+
+
+
+        //设置时区
+        date_default_timezone_set('Asia/Shanghai');
     }
 
 
@@ -117,46 +116,10 @@ class application extends pip implements runnable{
     }
 
 
-    /**
-     * 加载事件侦听器
-     * @author liu.bin
-     */
-    public function addEventBind(){
-        $eventBindFile = '@app/bind/bind.php';
-        php_exec(Builder::getAlias($eventBindFile));
-    }
-
-
-
-    /**
-     * 运行
-     * @author liu.bin 2017/10/26 10:52
-     */
-    public function run($type='server')
-    {
-		try {
-
-            $this->trigger(EVENT_APP_RUN);
-            $this->handleCommand($type);
-            $this->trigger(EVENT_APP_END);
-
-        } catch (ExitException $e) {
-            echo $e->statusCode;
-            exit;
-        }
-        // TODO: Implement run() method.
-    }
 
 
 
 
-
-
-    /**
-     * 处理命令
-     * @author liu.bin 2017/10/24 17:12
-     */
-    public function handleCommand($type){}
 
 
 

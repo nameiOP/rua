@@ -1175,6 +1175,23 @@ if(! function_exists('is_empty')){
 }
 
 
+
+/**
+ * 将 tcp://0.0.0.0:8000 转为数组 array('tcp','0.0.0.0',8000)
+ *
+ */
+if(! function_exists('parse_listen')){
+
+    function parse_listen($listen){
+        list($protocol,$host,$port) = explode(':',$listen);
+        $host = ltrim($host,'//');
+        return array($protocol,$host,$port);
+    }
+
+}
+
+
+
 /**
  * 显示系统消息
  */

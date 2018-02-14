@@ -16,13 +16,6 @@ class Builder extends BaseBuilder{
     public static $server;
 
 
-    /**
-     *
-     * @var rsk\client\client
-     */
-    public static $client;
-
-
 }
 
 spl_autoload_register(['Builder','autoload'],true,true);

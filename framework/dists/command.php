@@ -1,10 +1,17 @@
 <?php
-namespace rua\bricks;
+namespace rua\dists;
 
-use rua\base\brick;
+use rua\base\dist;
 use rua\able\runnable;
 
-class command extends brick implements runnable{
+class command extends dist implements runnable{
+
+
+
+	/**
+	 * 命令类型
+	 */
+	public $type = 'server';
 
 
 	/**
@@ -79,15 +86,19 @@ class command extends brick implements runnable{
 
     /**
      * 终端启动
-	 * @param string $type 启动类型
      * @author liu.bin 2017/10/24 17:54
      */
-    public function run($type='server'){
+    public function run(){
 
         global $argv;
 		$event = isset($argv[1]) ? $argv[1] : 'start';
-		$event = $type .'_'.$event;
+		$event = $this->type .'_'.$event;
 		$this->$event();
     }
+
+
+
+
+
 
 }

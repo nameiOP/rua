@@ -126,30 +126,18 @@ trait eventable
      * This method represents the happening of an event. It invokes
      * all attached handlers for the event including class-level handlers.
      * @param string $name the event name
-     * @param Event $event the event parameter. If not set, a default [[Event]] object will be created.
+     * @param array $param the event parameter. If not set, a default [[Event]] object will be created.
      */
-    public function trigger($name, Event $event = null)
+    public function trigger($name,array $param=array())
     {
-
-        if (!empty($this->_events[$name])) {
-            if ($event === null) {
-                $event = new Event;
-            }
-            if ($event->sender === null) {
-                $event->sender = $this;
-            }
-            $event->handled = false;
-            $event->name = $name;
-            foreach ($this->_events[$name] as $handler) {
-                $event->data = $handler[1];
-                call_user_func($handler[0], $event);
-                // stop further handling if the event is handled
-                if ($event->handled) {
-                    return;
-                }
-            }
+        if(empty($this->_events[$name])){
+            return ;
         }
-        // invoke class-level attached handlers
-        event::trigger($this, $name, $event);
+        $param = array_merge($param,array('sender'=>$this));
+        foreach ($this->_events[$name] as $handler) {
+            $param  = !is_null($handler[1]) ? array_merge($param,$handler[1]) : $param;
+            call_user_func_array($handler[0], $param);
+        }
+
     }
 }

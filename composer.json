@@ -4,7 +4,7 @@
     "keywords": ["php", "socket"],
     "authors" : [
         {
-            "name": "liubin",
+            "name": "liu.bin",
             "email": "ruabye@126.com",
             "homepage": "http://blog.ruaby.com"
         }
@@ -16,8 +16,9 @@
     },
     "autoload": {
     	"files":[
-        	"framework/helpers/helpers.php",
-            "framework/event/event.php"
+            "framework/event.php",
+            "framework/Builder.php",
+        	"framework/helpers/helpers.php"
         ],
         "psr-4": {
             "rua\\":"framework/"
